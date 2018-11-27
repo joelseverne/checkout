@@ -1,0 +1,90 @@
+* {
+  font-family: 'Helvetica';
+  box-sizing: border-box;
+}
+
+body {
+    padding: 15em;
+}
+
+#wrap {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  margin: 0 auto;
+}
+
+#tillL,
+#tillR {
+  margin: auto 50px;
+  padding: 20px;
+  width: 400px;
+}
+
+#tillR {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#printer {
+  border: solid black 1px;
+}
+
+#prices {
+  width: 300px;
+  margin: 0;
+}
+
+#total {
+  border: solid 5px grey;
+  height: 100px;
+  width: 300px;
+  padding: 10px;
+  font-size: 48px;
+  color: green;
+  background-color: black;
+}
+
+#till {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#button {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+#cancelLast {
+  margin-top: 30px;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#cancel {
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+ul {
+  margin-left: 0;
+  width: 300px;
+  text-align: center;
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 0;
+
+}

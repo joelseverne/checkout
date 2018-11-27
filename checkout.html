@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Checkout</title>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width initial-scale=1.0">
+      <link href="checkout.css" rel="stylesheet">
+      <link href="normalise.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="wrap">
+    <div id="tillL">
+    <h1 id="title">Please Scan Items</h1>
+
+    <div id="prices">
+      <h2>Prices:</h2>
+      <ul>
+        <li>A - £0.5,</li>
+        <li>B - £0.3,</li>
+        <li>C - £0.7,</li>
+        <li>D - £0.2</li>
+      </uL>
+    </div>
+
+    <p><strong>** Three A's for £1.30, Two B's £0.45 **</strong></p>
+
+    <p id="total"></p>
+
+    <div id="till">
+      <button onclick="add(A, 'A')" id="button" type="button">A</button>
+      <button onclick="add(B, 'B')" id="button" type="button">B</button>
+      <button onclick="add(C, 'C')" id="button" type="button">C</button>
+      <button onclick="add(D, 'D')" id="button" type="button">D</button>
+    </div>
+
+    <div id="cancelLast">
+      <button onclick="cancelLast(last_item, last_item_price)" id="button" type="button">Cancel Last Item</button>
+    </div>
+
+    <div id="cancel">
+      <button onclick="cancel()" id="button" type="button">Cancel Transaction</button>
+    </div>
+
+    <script>
+      var A = 0.5, B = 0.3, C = 0.7, D = 0.2;
+
+      var Total = 0;
+      var count_A = 0;
+      var count_B = 0;
+      var count_C = 0;
+      var count_D = 0;
+      var last_item_price = 0;
+      var last_item = "";
+      var discount_A = 0.2;
+      var discount_B = 0.15;
+
+      function add(x, y) {
+        Total = Math.round((Total + x) * 100) / 100;
+        if(y == "A") {
+          count_A += 1;
+          if ((count_A % 3) == 0) {
+            Total = Math.round((Total - 0.2) * 100) / 100;
+            }
+          }
+          if(y == "B") {
+            count_B += 1;
+            if ((count_B % 2) == 0) {
+              Total = Math.round((Total - 0.15) * 100) / 100;
+            }
+          }
+          if(y == "C") {
+            count_C += 1;
+          }
+          if(y == "D") {
+            count_D += 1;
+          }
+        document.getElementById("total").innerHTML = Total;
+        last_item = y;
+        last_item_price = x;
+
+      }
+
+      function cancel() {
+        count_A = 0;
+        count_B = 0;
+        count_C = 0;
+        count_D = 0;
+        Total = 0;
+        document.getElementById("total").innerHTML = Total;
+      }
+
+      function cancelLast(x, y) {
+          Total = Total - y;
+          if(x == "A" & (count_A % 3) == 0) {
+            if((count_A % 3) == 0) {
+              Total = Total + discount_A;
+            }
+            count_A -= 1
+          }
+          if(x == "B") {
+            if((count_B % 2) == 0) {
+              Total = Total + discount_B;
+            }
+            count_B -= 1;
+          }
+          Total = Math.round((Total) * 100) / 100;
+          document.getElementById("total").innerHTML = Total;
+      }
+
+      function print_recript() {
+        document.getElementById("printer").innerHTML =
+        "A x " + count_A + "<br>" +
+        "B x " + count_B + "<br>" +
+        "C x " + count_C + "<br>" +
+        "D x " + count_D;
+      }
+
+      document.getElementById("total").innerHTML = Total;
+      console.log(A + B + C + D);
+    </script>
+      </div>
+
+
+      <div id="tillR">
+        <button onclick="print_recript()" id="button" type="button">Print Receipt</button>
+        <div id="printer">
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
